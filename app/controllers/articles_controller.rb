@@ -20,4 +20,14 @@ class ArticlesController < ApplicationController
   end
 
   # add edit and update methods here
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    a_param = params.require(:article).permit(:title, :description)
+    @article.update(a_param)
+    redirect_to @article
+  end 
 end
